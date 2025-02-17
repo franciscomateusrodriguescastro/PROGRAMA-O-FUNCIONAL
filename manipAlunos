@@ -41,3 +41,17 @@ while True:
         idade = int(input("Idade: "))
         alunos = inserir_novo_aluno(alunos, nome, matricula, idade)
         print("\nAluno cadastrado com sucesso")
+
+    elif opcao == "3":
+        try:
+            matricula = int(input("Digite a matrícula do aluno a ser removido: "))
+            if remover_aluno_por_matricula(alunos, matricula):
+                print("\nAluno removido com sucesso!")
+            else:
+                print("\nMatrícula não encontrada!")
+        except ValueError:
+            print("\nErro: Digite um número válido!")
+
+    else:
+        print("Saindo do programa...")
+        break
