@@ -11,7 +11,12 @@ alunos = [
 # função para inserir um aluno
 inserir_novo_aluno = lambda alunos, nome, matricula, idade: alunos + [{"nome": nome, "matricula": matricula, "idade": idade}]
 # função para remover um aluno
-remover_aluno_por_matricula = lambda alunos, matricula: [aluno for aluno in alunos if aluno["matricula"] != matricula]
+def remover_aluno_por_matricula(alunos, matricula):
+    for aluno in alunos:
+        if aluno["matricula"] == matricula:
+            alunos.remove(aluno)
+            return True
+    return False
 # função para mostrar os alunos
 exibir_lista_de_alunos = lambda alunos: "\n".join([f"{aluno['nome']} - Matrícula: {aluno['matricula']}, Idade: {aluno['idade']}" for aluno in alunos])
 
