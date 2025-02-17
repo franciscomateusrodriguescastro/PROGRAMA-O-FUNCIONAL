@@ -1,0 +1,38 @@
+
+# Lista de alunos (nome, idade e matrícula)
+alunos = [
+    {"nome": "Carla Vitoria", "idade": 20, "matricula": 2314457},
+    {"nome": "Marcos Lima", "idade": 22, "matricula": 2314587},
+    {"nome": "Maria Silva", "idade": 20, "matricula": 2315547},
+    {"nome": "João Lucas", "idade": 20, "matricula": 2311698}
+]
+
+# Funções lambda para manipulação da lista de alunos
+# função para inserir um aluno
+inserir_novo_aluno = lambda alunos, nome, matricula, idade: alunos + [{"nome": nome, "matricula": matricula, "idade": idade}]
+# função para remover um aluno
+remover_aluno_por_matricula = lambda alunos, matricula: [aluno for aluno in alunos if aluno["matricula"] != matricula]
+# função para mostrar os alunos
+exibir_lista_de_alunos = lambda alunos: "\n".join([f"{aluno['nome']} - Matrícula: {aluno['matricula']}, Idade: {aluno['idade']}" for aluno in alunos])
+
+
+# Menu interativo
+while True:
+    print("\nMENU:")
+    print("1 - Ver lista de alunos")
+    print("2 - Adicionar aluno")
+    print("3 - Remover aluno")
+    print("Outro número - Sair")
+
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        print("\nLista de alunos:")
+        print(exibir_lista_de_alunos(alunos))
+
+    elif opcao == "2":
+        nome = input("Nome: ")
+        matricula = int(input("Matrícula: "))
+        idade = int(input("Idade: "))
+        alunos = inserir_novo_aluno(alunos, nome, matricula, idade)
+        print("\nAluno cadastrado com sucesso")
