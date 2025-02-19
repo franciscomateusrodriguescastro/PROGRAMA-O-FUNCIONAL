@@ -1,6 +1,6 @@
 # Lista de alunos
 alunos = [
-    {"nome": "Carla Vitoria", "idade": 20, "matricula": 2314457},
+    {"nome": "Carla Mendes", "idade": 20, "matricula": 2314457},
     {"nome": "Marcos Lima", "idade": 22, "matricula": 2314587},
     {"nome": "Maria Silva", "idade": 20, "matricula": 2315547},
     {"nome": "João Lucas", "idade": 20, "matricula": 2311698}
