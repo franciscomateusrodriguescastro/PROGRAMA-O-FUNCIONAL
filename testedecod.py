@@ -1,6 +1,6 @@
 # Lista de alunos
 alunos = [
-    {"nome": "Carla Vitoria", "idade": 20, "matricula": 2314457},
+    {"nome": "Carla Alves", "idade": 20, "matricula": 2314457},
     {"nome": "Marcos Lima", "idade": 22, "matricula": 2314587},
     {"nome": "Maria Silva", "idade": 20, "matricula": 2315547},
     {"nome": "João Lucas", "idade": 20, "matricula": 2311698}
@@ -35,15 +35,19 @@ while True:
         idade = int(input("Idade: "))
         alunos = inserir_novo_aluno(alunos, nome, matricula, idade)
         print("\nAluno cadastrado com sucesso!")
+        print("\nLista de alunos atualizada:")
+        print(exibir_lista_de_alunos(alunos))  
 
     elif opcao == "3":
         matricula = int(input("Digite a matrícula do aluno a ser removido: "))
         alunos = remover_aluno_por_matricula(alunos, matricula)
         print("\nAluno removido com sucesso!")
+        print("\nLista de alunos atualizada:")
+        print(exibir_lista_de_alunos(alunos))  
 
     elif opcao.lower() == "sair":
         print("Saindo do programa...")
         break
 
     else:
-        print("Opção inválida! Tente novamente.")
+        print("Opção inválida! Tente novamente.")
