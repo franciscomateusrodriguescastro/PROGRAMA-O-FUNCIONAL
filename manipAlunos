@@ -1,5 +1,4 @@
-
-# Lista de alunos (nome, idade e matrícula)
+# Função Lambda
 alunos = [
     {"nome": "Carla Vitoria", "idade": 20, "matricula": 2314457},
     {"nome": "Marcos Lima", "idade": 22, "matricula": 2314587},
@@ -7,18 +6,29 @@ alunos = [
     {"nome": "João Lucas", "idade": 20, "matricula": 2311698}
 ]
 
-# Funções lambda para manipulação da lista de alunos
-# função para inserir um aluno
-inserir_novo_aluno = lambda alunos, nome, matricula, idade: alunos + [{"nome": nome, "matricula": matricula, "idade": idade}]
-# função para remover um aluno
+# List Comprehension
+def inserir_novo_aluno(alunos, nome, matricula, idade):
+    alunos.append({"nome": nome, "matricula": matricula, "idade": idade})
+
+
+# Closure
 def remover_aluno_por_matricula(alunos, matricula):
-    for aluno in alunos:
-        if aluno["matricula"] == matricula:
-            alunos.remove(aluno)
-            return True
-    return False
-# função para mostrar os alunos
-exibir_lista_de_alunos = lambda alunos: "\n".join([f"{aluno['nome']} - Matrícula: {aluno['matricula']}, Idade: {aluno['idade']}" for aluno in alunos])
+    nova_lista = [aluno for aluno in alunos if aluno["matricula"] != matricula]
+    
+    if len(nova_lista) == len(alunos):
+        return False
+    
+    alunos.clear()
+    alunos.extend(nova_lista)
+    return True
+
+# Função de Alta Ordem
+def exibir_lista_de_alunos(alunos):
+
+    if not alunos:
+        return "Nenhum aluno cadastrado."
+    
+    return "\n".join([f"{aluno['nome']} - Matrícula: {aluno['matricula']}, Idade: {aluno['idade']}" for aluno in alunos])
 
 
 # Menu interativo
@@ -35,23 +45,31 @@ while True:
         print("\nLista de alunos:")
         print(exibir_lista_de_alunos(alunos))
 
-    elif opcao == "2":
+    elif opcao == "2": 
         nome = input("Nome: ")
-        matricula = int(input("Matrícula: "))
-        idade = int(input("Idade: "))
-        alunos = inserir_novo_aluno(alunos, nome, matricula, idade)
-        print("\nAluno cadastrado com sucesso")
 
-    elif opcao == "3":
+        try:
+            matricula = int(input("Matrícula: "))
+            idade = int(input("Idade: "))
+        except ValueError:
+            print("\nErro: Digite valores numéricos válidos para matrícula e idade!")
+            continue  
+
+        inserir_novo_aluno(alunos, nome, matricula, idade)
+        print("\nAluno cadastrado com sucesso!")
+
+    elif opcao == "3": 
         try:
             matricula = int(input("Digite a matrícula do aluno a ser removido: "))
-            if remover_aluno_por_matricula(alunos, matricula):
-                print("\nAluno removido com sucesso!")
-            else:
-                print("\nMatrícula não encontrada!")
         except ValueError:
             print("\nErro: Digite um número válido!")
+            continue
 
-    else:
+        if remover_aluno_por_matricula(alunos, matricula):
+            print("\nAluno removido com sucesso!")
+        else:
+            print("\nMatrícula não encontrada!")
+
+    else: 
         print("Saindo do programa...")
         break
