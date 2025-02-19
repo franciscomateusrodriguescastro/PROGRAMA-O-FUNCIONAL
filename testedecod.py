@@ -1,20 +1,49 @@
 # Lista de alunos
-alunos = []
+alunos = [
+    {"nome": "Carla Vitoria", "idade": 20, "matricula": 2314457},
+    {"nome": "Marcos Lima", "idade": 22, "matricula": 2314587},
+    {"nome": "Maria Silva", "idade": 20, "matricula": 2315547},
+    {"nome": "João Lucas", "idade": 20, "matricula": 2311698}
+]
 
-# função lambda para inserir um novo aluno
+# Lambda para inserir um novo aluno
 inserir_novo_aluno = lambda alunos, nome, matricula, idade: alunos.append({"nome": nome, "matricula": matricula, "idade": idade}) or alunos
 
-# função lambda para exibir a lista de alunos
+# Lambda para remover um aluno
+remover_aluno_por_matricula = lambda alunos, matricula: [aluno for aluno in alunos if aluno["matricula"] != matricula]
+
+# Lambda para exibir a lista de alunos
 exibir_lista_de_alunos = lambda alunos: "\n".join([f"{aluno['nome']} - Matrícula: {aluno['matricula']}, Idade: {aluno['idade']}" for aluno in alunos])
 
-# Adicionando aluno pelo input
-nome = input("Nome: ")
-matricula = int(input("Matrícula: "))
-idade = int(input("Idade: "))
+# Menu interativo
+while True:
+    print("\nMENU:")
+    print("1 - Ver lista de alunos")
+    print("2 - Adicionar aluno")
+    print("3 - Remover aluno")
+    print("Sair")
 
-# função lambda para adicionar o aluno
-inserir_novo_aluno(alunos, nome, matricula, idade)
+    opcao = input("Escolha uma opção: ")
 
-# Exibindo a lista de alunos
-print("\nLista de alunos:")
-print(exibir_lista_de_alunos(alunos))
+    if opcao == "1":
+        print("\nLista de alunos:")
+        print(exibir_lista_de_alunos(alunos))
+
+    elif opcao == "2":
+        nome = input("Nome: ")
+        matricula = int(input("Matrícula: "))
+        idade = int(input("Idade: "))
+        alunos = inserir_novo_aluno(alunos, nome, matricula, idade)
+        print("\nAluno cadastrado com sucesso!")
+
+    elif opcao == "3":
+        matricula = int(input("Digite a matrícula do aluno a ser removido: "))
+        alunos = remover_aluno_por_matricula(alunos, matricula)
+        print("\nAluno removido com sucesso!")
+
+    elif opcao.lower() == "sair":
+        print("Saindo do programa...")
+        break
+
+    else:
+        print("Opção inválida! Tente novamente.")
