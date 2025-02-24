@@ -21,15 +21,19 @@ while True:
     print("1 - Ver lista de alunos")
     print("2 - Adicionar aluno")
     print("3 - Remover aluno")
-    print("Sair")
+    print("4 - Sair")
 
-    opcao = input("Escolha uma opção: ")
+    opcao = input("Escolha uma opo: ")
 
-    if opcao == "1":
+    if opcao in ["1", "2", "3", "4"]:
+        opcao = int(opcao)
+
+
+    if opcao == 1:
         print("\nLista de alunos:")
         print(exibir_lista_de_alunos(alunos))
 
-    elif opcao == "2":
+    elif opcao == 2:
         nome = input("Nome: ")
         matricula = int(input("Matrícula: "))
         idade = int(input("Idade: "))
@@ -38,16 +42,16 @@ while True:
         print("\nLista de alunos atualizada:")
         print(exibir_lista_de_alunos(alunos))  
 
-    elif opcao == "3":
+    elif opcao == 3:
         matricula = int(input("Digite a matrícula do aluno a ser removido: "))
         alunos = remover_aluno_por_matricula(alunos, matricula)
         print("\nAluno removido com sucesso!")
         print("\nLista de alunos atualizada:")
         print(exibir_lista_de_alunos(alunos))  
 
-    elif opcao.lower() == "sair":
+    elif opcao == 4:
         print("Saindo do programa...")
         break
 
     else:
-        print("Opção inválida! Tente novamente.")
+        print("Opção inválida!Escolha um número entre 1 e 4.")
